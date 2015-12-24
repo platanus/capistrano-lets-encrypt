@@ -36,48 +36,32 @@ cap delayed_job:restart                  # Restart delayed_job service
 Configurable options (copy into deploy.rb), shown here with examples:
 
 ```ruby
-# Number of delayed_job workers
-# default value: 1
-set :delayed_job_workers, 2
+# default value: :web
+set :lets_encrypt_roles, :lets_encrypt
 
-# String to be prefixed to worker process names
-# This feature allows a prefix name to be placed in front of the process.
-# For example:  reports/delayed_job.0  instead of just delayed_job.0
-set :delayed_job_prefix, :reports               
+# default value: false
+set :lets_encrypt_test, true
 
-# Delayed_job queue or queues
-# Set the --queue or --queues option to work from a particular queue.
 # default value: nil
-set :delayed_job_queues, ['mailer','tracking']
+set :lets_encrypt_email, nil
 
-# Specify different pools
-# You can use this option multiple times to start different numbers of workers for different queues.
 # default value: nil
-set :delayed_job_pools, {
-    :mailer => 2,
-    :tracking => 1,
-    :* => 2
-}
+set :lets_encrypt_domains, nil
 
-# Set the roles where the delayed_job process should be started
-# default value: :app
-set :delayed_job_roles, [:app, :background]
+# default value: "#{release_path}/public"
+set :lets_encrypt_challenge_public_path, "#{release_path}/public"
 
-# Set the location of the delayed_job executable
-# Can be relative to the release_path or absolute
-# default value 'bin'
-set :delayed_job_bin_path, 'script' # for rails 3.x
+# default value: "#{shared_path}/ssl/certs"
+set :lets_encrypt_output_path, "#{shared_path}/ssl/certs"
 
-### Set the location of the delayed_job logfile
-set :delayed_log_dir, 'path_to_logfile'
-```
+# default value: "#{fetch(:lets_encrypt_email)}.account_key.pem"
+set :lets_encrypt_account_key, "#{fetch(:lets_encrypt_email)}.account_key.pem"
 
-It also adds the following hook
+# default value: 30
+set :lets_encrypt_days_valid, 30
 
-```ruby
-after 'deploy:published', 'restart' do
-    invoke 'delayed_job:restart'
-end
+# default value: "~/certs"
+set :lets_encrypt_local_output_path, "~/certs"
 ```
 
 ## Contributing
