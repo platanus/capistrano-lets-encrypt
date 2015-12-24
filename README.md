@@ -2,6 +2,13 @@
 
 Let's encrypt support for Capistrano 3.x
 
+Thanks to @unixcharles and @zealot128 for their libraries,
+[acme-client](https://github.com/unixcharles/acme-client/) and
+[letsencrypt-cli](https://github.com/zealot128/ruby-letsencrypt-cli) to manage
+part of the workflow to work with Let's encrypt. This library use both to create
+a series of capistrano tasks that should help you create certs on your projects
+deployed with capistrano
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -28,9 +35,10 @@ require 'capistrano/lets-encrypt'
 You will get the following tasks
 
 ```ruby
-cap delayed_job:start                    # Start delayed_job service
-cap delayed_job:stop                     # Stop delayed_job service
-cap delayed_job:restart                  # Restart delayed_job service
+cap lets_encrypt:register            # Register a Let's encrypt account
+cap lets_encrypt:check_certificate   # Check for validity of certificates
+cap lets_encrypt:authorize           # Authorize a domain using ACME protocol
+cap lets_encrypt:cert                # Create certificates and private keys
 ```
 
 Configurable options (copy into deploy.rb), shown here with examples:
@@ -64,6 +72,10 @@ set :lets_encrypt_days_valid, 30
 set :lets_encrypt_local_output_path, "~/certs"
 ```
 
+## Requirements
+
+This tool needs Ruby >= 2.1 (as the dependency acme-client needs that because of use of keyword arguments).
+
 ## Contributing
 
 1. Fork it
@@ -74,7 +86,7 @@ set :lets_encrypt_local_output_path, "~/certs"
 
 ## Credits
 
-Thank you [contributors](https://github.com/platanus/guides/graphs/contributors)!
+Thank you [contributors](https://github.com/platanus/capistran-lets-encrypt/graphs/contributors)!
 
 <img src="http://platan.us/gravatar_with_text.png" alt="Platanus" width="250"/>
 
