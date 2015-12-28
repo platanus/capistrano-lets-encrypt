@@ -13,7 +13,7 @@ deployed with capistrano
 
 Add this line to your application's Gemfile:
 
-    gem 'capistrano-lets-encrypt', '~> 1.0'
+    gem 'capistrano-lets-encrypt'
     gem 'capistrano'
 
 And then execute:
@@ -44,32 +44,42 @@ cap lets_encrypt:cert                # Create certificates and private keys
 Configurable options (copy into deploy.rb), shown here with examples:
 
 ```ruby
+# Set the roles where the let's encrypt process should be started
 # default value: :web
 set :lets_encrypt_roles, :lets_encrypt
 
+# Set it to true to use let's encrypt staging servers
 # default value: false
 set :lets_encrypt_test, true
 
+# Set your let's encrypt account email
+# The account will be created if no private key match
 # default value: nil
 set :lets_encrypt_email, nil
 
-# default value: nil
-set :lets_encrypt_domains, nil
-
-# default value: "#{release_path}/public"
-set :lets_encrypt_challenge_public_path, "#{release_path}/public"
-
-# default value: "#{shared_path}/ssl/certs"
-set :lets_encrypt_output_path, "#{shared_path}/ssl/certs"
-
+# Set the path to your let's encrypt account private key
 # default value: "#{fetch(:lets_encrypt_email)}.account_key.pem"
 set :lets_encrypt_account_key, "#{fetch(:lets_encrypt_email)}.account_key.pem"
 
-# default value: 30
-set :lets_encrypt_days_valid, 30
+# Set the domains you want to register
+# default value: nil
+set :lets_encrypt_domains, nil
 
+# Set the path from where you are serving your static assets
+# default value: "#{release_path}/public"
+set :lets_encrypt_challenge_public_path, "#{release_path}/public"
+
+# Set the path where the new certs are going to be saved
+# default value: "#{shared_path}/ssl/certs"
+set :lets_encrypt_output_path, "#{shared_path}/ssl/certs"
+
+# Set the local path where the certs will be saved
 # default value: "~/certs"
 set :lets_encrypt_local_output_path, "~/certs"
+
+# Set the minimum time that the cert should be valid
+# default value: 30
+set :lets_encrypt_days_valid, 15
 ```
 
 ## Requirements
@@ -86,7 +96,7 @@ This tool needs Ruby >= 2.1 (as the dependency acme-client needs that because of
 
 ## Credits
 
-Thank you [contributors](https://github.com/platanus/capistran-lets-encrypt/graphs/contributors)!
+Thank you [contributors](https://github.com/platanus/capistrano-lets-encrypt/graphs/contributors)!
 
 <img src="http://platan.us/gravatar_with_text.png" alt="Platanus" width="250"/>
 
