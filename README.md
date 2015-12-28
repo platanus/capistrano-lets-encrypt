@@ -4,7 +4,7 @@ Let's encrypt support for Capistrano 3.x
 
 Thanks to @unixcharles and @zealot128 for their libraries,
 [acme-client](https://github.com/unixcharles/acme-client/) and
-[letsencrypt-cli](https://github.com/zealot128/ruby-letsencrypt-cli) to manage
+[letsencrypt-cli](https://github.com/zealot128/ruby-letsencrypt-cli) for managing
 part of the workflow to work with Let's encrypt. This library use both to create
 a series of capistrano tasks that should help you create certs on your projects
 deployed with capistrano
