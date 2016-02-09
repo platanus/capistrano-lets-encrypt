@@ -48,6 +48,10 @@ Configurable options (copy into deploy.rb), shown here with examples:
 # default value: :web
 set :lets_encrypt_roles, :lets_encrypt
 
+# Optionally set the user to use when installing on the remote system
+# default value: nil
+set :lets_encrypt_user, nil
+
 # Set it to true to use let's encrypt staging servers
 # default value: false
 set :lets_encrypt_test, true
