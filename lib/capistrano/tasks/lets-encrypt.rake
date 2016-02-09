@@ -159,7 +159,7 @@ namespace :lets_encrypt do
 
   def options
     @options ||= {
-      account_key: fetch(:lets_encrypt_account_key),
+      account_key: File.expand_path(fetch(:lets_encrypt_account_key)),
       test: fetch(:lets_encrypt_test),
       log_level: "info",
       color: true,
