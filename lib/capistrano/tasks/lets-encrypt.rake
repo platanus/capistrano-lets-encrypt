@@ -1,5 +1,6 @@
 require 'openssl'
 require 'letsencrypt/cli/acme_wrapper'
+require 'colorize'
 
 namespace :lets_encrypt do
 
