@@ -45,6 +45,7 @@ Configurable options (copy into deploy.rb), shown here with examples:
 
 ```ruby
 # Set the roles where the let's encrypt process should be started
+# Be sure at least one server has primary: true
 # default value: :web
 set :lets_encrypt_roles, :lets_encrypt
 
@@ -56,7 +57,7 @@ set :lets_encrypt_user, nil
 # default value: false
 set :lets_encrypt_test, true
 
-# Set your let's encrypt account email
+# Set your let's encrypt account email (required)
 # The account will be created if no private key match
 # default value: nil
 set :lets_encrypt_email, nil
@@ -65,7 +66,8 @@ set :lets_encrypt_email, nil
 # default value: "#{fetch(:lets_encrypt_email)}.account_key.pem"
 set :lets_encrypt_account_key, "#{fetch(:lets_encrypt_email)}.account_key.pem"
 
-# Set the domains you want to register
+# Set the domains you want to register (required)
+# This must be a string of one or more domains separated a space - e.g. "example.com example2.com"
 # default value: nil
 set :lets_encrypt_domains, nil
 
