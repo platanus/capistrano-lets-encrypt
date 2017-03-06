@@ -15,6 +15,9 @@ namespace :lets_encrypt do
       wrapper.log "not an email", :fatal
       exit 1
     end
+    if !email[/.*@.*[.]com$/]
+      wrapper.log "E-mail is not .com - you may get rejected", :debug
+    end
     registration = client.register(contact: "mailto:" + email)
     registration.agree_terms
     wrapper.log "Account created, Terms accepted"
