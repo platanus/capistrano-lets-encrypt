@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "capistrano-lets-encrypt"
-  spec.version       = "0.2.0"
+  spec.version       = "0.3.0"
   spec.authors       = ["Juan Ignacio Donoso"]
   spec.email         = ["juan.ignacio@platan.us"]
   spec.summary       = %q{Adds support for let's encrypt to Capistrano 3.x}
